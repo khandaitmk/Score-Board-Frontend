@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* ================================
+   Sports LED Scoreboard Design System
+   (Tailwind v4)
+================================ */
+
+/* ---------- THEME TOKENS ---------- */
+@theme {
+  --background: 220 25% 12%;
+  --foreground: 210 40% 98%;
+
+  --card: 220 30% 15%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 220 30% 18%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 217 91% 60%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 220 25% 20%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 220 20% 25%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 217 91% 60%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --success: 142 76% 36%;
+  --success-foreground: 0 0% 100%;
+
+  --border: 220 20% 25%;
+  --input: 220 25% 20%;
+  --ring: 217 91% 60%;
+  --ring-offset-background: 220 25% 12%;
+
+  --radius: 0.5rem;
+
+  /* LED Display */
+  --led-red: 0 100% 50%;
+  --led-green: 142 100% 50%;
+  --led-yellow: 45 100% 50%;
+  --led-panel: 0 0% 5%;
+  --led-grid: 220 20% 15%;
+
+  /* Scoreboard */
+  --scoreboard-bg: 220 30% 10%;
+  --scoreboard-border: 217 91% 60%;
+
+  /* Sidebar */
+  --sidebar-background: 220 30% 15%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-primary: 217 91% 60%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 25% 20%;
+  --sidebar-accent-foreground: 210 40% 98%;
+  --sidebar-border: 220 20% 25%;
+  --sidebar-ring: 217 91% 60%;
+}
+
+/* ---------- BASE STYLES ---------- */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  .dark {
+    --background: 220 25% 12%;
+    --foreground: 210 40% 98%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* ---------- UTILITIES ---------- */
+@layer utilities {
+  /* LED Text Effect */
+  .led-text {
+    font-family: "Courier New", monospace;
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+
+  /* LED Panel Grid */
+  .led-panel {
+    background:
+      linear-gradient(
+        90deg,
+        transparent 31px,
+        hsl(var(--led-grid)) 31px,
+        hsl(var(--led-grid)) 32px,
+        transparent 32px
+      ),
+      linear-gradient(
+        transparent 31px,
+        hsl(var(--led-grid)) 31px,
+        hsl(var(--led-grid)) 32px,
+        transparent 32px
+      ),
+      hsl(var(--led-panel));
+    background-size: 32px 32px;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.2s ease-in-out;
+  }
+}
