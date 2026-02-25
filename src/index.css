@@ -34,7 +34,7 @@
   --success: 142 76% 36%;
   --success-foreground: 0 0% 100%;
 
-  --border: 220 20% 25%;
+  --border: 220 20% 70%;
   --input: 220 25% 20%;
   --ring: 217 91% 60%;
   --ring-offset-background: 220 25% 12%;
@@ -112,7 +112,7 @@
         transparent 32px
       ),
       hsl(var(--led-panel));
-    background-size: 32px 32px;
+    background-size: 145px 6px;
   }
 
   /* Smooth transitions */

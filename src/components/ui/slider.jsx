@@ -33,9 +33,10 @@ const Slider = React.forwardRef(
     return (
       <div
         ref={ref}
-        className={cn("relative flex w-full touch-none select-none items-center", className)}
+        className={cn("relative flex w-full items-center", className)}
         {...props}
       >
+        {/* Invisible but interactive input */}
         <input
           type="range"
           min={min}
@@ -43,23 +44,28 @@ const Slider = React.forwardRef(
           step={step}
           value={internalValue}
           onChange={handleChange}
-          className="sr-only"
+          className="absolute w-full h-5 opacity-0 z-20 cursor-pointer"
         />
-        <div className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
+
+        {/* Track */}
+        <div className="relative h-2 w-full rounded-full bg-gray-300 z-0">
+          {/* Filled portion */}
           <div
-            className="absolute h-full bg-primary transition-all"
+            className="absolute h-full rounded-full bg-blue-500"
             style={{ width: `${percentage}%` }}
           />
         </div>
+
+        {/* Thumb — correctly positioned using interpolated offset */}
         <div
-          className="absolute h-5 w-5 rounded-full border-2 border-primary bg-background shadow transition-all hover:scale-110"
-          style={{ left: `calc(${percentage}% - 10px)` }}
+          className="absolute h-5 w-5 rounded-full bg-blue-600 shadow pointer-events-none z-10"
+          style={{ left: `calc(${percentage}% - ${percentage * 0.2}px)` }}
         />
       </div>
     );
   }
 );
+
 Slider.displayName = "Slider";
 
 export { Slider };
-

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
+  import { VolleyballControls } from "@/components/VolleyballControls";
+  import { CricketControls } from "@/components/CricketControls";
+  import { KabaddiControls } from "@/components/KabaddiControls";
+  import { KhoKhoControls } from "@/components/KhoKhoControls";
 
 import { LEDPreview } from "@/components/LEDPreview";
 import { SportSelector } from "@/components/SportSelector";
@@ -16,45 +20,161 @@ export default function Index() {
   const scoreboard = useScoreboard();
 
   const renderSportControls = () => {
-    switch (scoreboard.state.sport) {
-      case "badminton":
-        return (
-          <BadmintonControls
-            badminton={scoreboard.state.badminton}
-            prefix={scoreboard.state.prefix}
-            displayName={scoreboard.state.displayName}
-            onPrefixChange={scoreboard.setPrefix}
-            onDisplayNameChange={scoreboard.setDisplayName}
-            onPlayer1NameChange={scoreboard.setPlayer1Name}
-            onPlayer2NameChange={scoreboard.setPlayer2Name}
-            onGameScoreChange={scoreboard.setGameScore}
-          />
-        );
+  switch (scoreboard.state.sport) {
+    case "badminton":
+      return (
+        <BadmintonControls
+          badminton={scoreboard.state.badminton}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onPlayer1NameChange={scoreboard.setPlayer1Name}
+          onPlayer2NameChange={scoreboard.setPlayer2Name}
+          onGameScoreChange={scoreboard.setGameScore}
+        />
+      );
 
-      default:
-        return (
-          <FootballControls
-            football={scoreboard.state.football}
-            timer={scoreboard.state.timer}
-            prefix={scoreboard.state.prefix}
-            displayName={scoreboard.state.displayName}
-            onPrefixChange={scoreboard.setPrefix}
-            onDisplayNameChange={scoreboard.setDisplayName}
-            onTeam1NameChange={scoreboard.setTeam1Name}
-            onTeam2NameChange={scoreboard.setTeam2Name}
-            onScore1Change={scoreboard.setScore1}
-            onScore2Change={scoreboard.setScore2}
-            onQuarterChange={scoreboard.setQuarter}
-            onSwapTeams={scoreboard.swapTeams}
-            onTimerMinutesChange={scoreboard.setTimerMinutes}
-            onTimerSecondsChange={scoreboard.setTimerSeconds}
-            onTimerStart={scoreboard.startTimer}
-            onTimerPause={scoreboard.pauseTimer}
-            onTimerReset={scoreboard.resetTimer}
-          />
-        );
-    }
-  };
+    case "table-tennis":
+      return (
+        <BadmintonControls  // reuse same UI, just pass tableTennis state
+          badminton={scoreboard.state.tableTennis}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onPlayer1NameChange={scoreboard.setTTPlayer1Name}
+          onPlayer2NameChange={scoreboard.setTTPlayer2Name}
+          onGameScoreChange={scoreboard.setTTGameScore}
+        />
+      );
+
+    case "basketball":
+      return (
+        <FootballControls   // reuse same UI
+          football={scoreboard.state.basketball}
+          timer={scoreboard.state.timer}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onTeam1NameChange={scoreboard.setBasketballTeam1Name}
+          onTeam2NameChange={scoreboard.setBasketballTeam2Name}
+          onScore1Change={scoreboard.setBasketballScore1}
+          onScore2Change={scoreboard.setBasketballScore2}
+          onQuarterChange={scoreboard.setBasketballQuarter}
+          onSwapTeams={scoreboard.swapTeams}
+          onTimerMinutesChange={scoreboard.setTimerMinutes}
+          onTimerSecondsChange={scoreboard.setTimerSeconds}
+          onTimerStart={scoreboard.startTimer}
+          onTimerPause={scoreboard.pauseTimer}
+          onTimerReset={scoreboard.resetTimer}
+        />
+      );
+
+    case "volleyball":
+      return (
+        <VolleyballControls
+          volleyball={scoreboard.state.volleyball}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onTeam1NameChange={scoreboard.setVolleyballTeam1Name}
+          onTeam2NameChange={scoreboard.setVolleyballTeam2Name}
+          onSetScoreChange={scoreboard.setSetScore}
+        />
+      );
+
+    case "cricket":
+      return (
+        <CricketControls
+          cricket={scoreboard.state.cricket}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onTeam1NameChange={scoreboard.setCricketTeam1Name}
+          onTeam2NameChange={scoreboard.setCricketTeam2Name}
+          onRunsChange={scoreboard.setCricketRuns}
+          onWicketsChange={scoreboard.setCricketWickets}
+          onOversChange={scoreboard.setCricketOvers}
+          onBallsChange={scoreboard.setCricketBalls}
+          onTargetChange={scoreboard.setCricketTarget}
+          onInningsChange={scoreboard.setCricketInnings}
+          onTotalOversChange={scoreboard.setCricketTotalOvers}
+        />
+      );
+
+    case "kabaddi":
+      return (
+        <KabaddiControls
+          kabaddi={scoreboard.state.kabaddi}
+          timer={scoreboard.state.timer}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onTeam1NameChange={scoreboard.setKabaddiTeam1Name}
+          onTeam2NameChange={scoreboard.setKabaddiTeam2Name}
+          onScore1Change={scoreboard.setKabaddiScore1}
+          onScore2Change={scoreboard.setKabaddiScore2}
+          onHalfChange={scoreboard.setKabaddiHalf}
+          onTimerMinutesChange={scoreboard.setTimerMinutes}
+          onTimerSecondsChange={scoreboard.setTimerSeconds}
+          onTimerStart={scoreboard.startTimer}
+          onTimerPause={scoreboard.pauseTimer}
+          onTimerReset={scoreboard.resetTimer}
+        />
+      );
+
+    case "kho-kho":
+      return (
+        <KhoKhoControls
+          khoKho={scoreboard.state.khoKho}
+          timer={scoreboard.state.timer}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onTeam1NameChange={scoreboard.setKhoKhoTeam1Name}
+          onTeam2NameChange={scoreboard.setKhoKhoTeam2Name}
+          onScore1Change={scoreboard.setKhoKhoScore1}
+          onScore2Change={scoreboard.setKhoKhoScore2}
+          onTurnChange={scoreboard.setKhoKhoTurn}
+          onInningsChange={scoreboard.setKhoKhoInnings}
+          onTimerMinutesChange={scoreboard.setTimerMinutes}
+          onTimerSecondsChange={scoreboard.setTimerSeconds}
+          onTimerStart={scoreboard.startTimer}
+          onTimerPause={scoreboard.pauseTimer}
+          onTimerReset={scoreboard.resetTimer}
+        />
+      );
+
+    default: // football
+      return (
+        <FootballControls
+          football={scoreboard.state.football}
+          timer={scoreboard.state.timer}
+          prefix={scoreboard.state.prefix}
+          displayName={scoreboard.state.displayName}
+          onPrefixChange={scoreboard.setPrefix}
+          onDisplayNameChange={scoreboard.setDisplayName}
+          onTeam1NameChange={scoreboard.setTeam1Name}
+          onTeam2NameChange={scoreboard.setTeam2Name}
+          onScore1Change={scoreboard.setScore1}
+          onScore2Change={scoreboard.setScore2}
+          onQuarterChange={scoreboard.setQuarter}
+          onSwapTeams={scoreboard.swapTeams}
+          onTimerMinutesChange={scoreboard.setTimerMinutes}
+          onTimerSecondsChange={scoreboard.setTimerSeconds}
+          onTimerStart={scoreboard.startTimer}
+          onTimerPause={scoreboard.pauseTimer}
+          onTimerReset={scoreboard.resetTimer}
+        />
+      );
+  }
+};
 
   return (
     <div className="min-h-screen bg-background">
@@ -78,7 +198,7 @@ export default function Index() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Panel */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 ">
               <TabsContent value="scoreboard">
                 <Card>
                   <CardContent className="p-6 space-y-6">

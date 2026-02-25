@@ -1,3 +1,4 @@
+import rbuLogo from "../assets/rbu-logo.png";
 export function LEDPreview({ rows, brightness }) {
   const opacity = brightness / 100;
 
@@ -6,7 +7,7 @@ export function LEDPreview({ rows, brightness }) {
       {/* University Header */}
       <div className="flex items-center justify-center gap-4 mb-6">
         <div className="w-16 h-16 rounded-full bg-linear-to-br from-orange-500 to-red-600 flex items-center justify-center border-2 border-blue-500">
-          <span className="text-2xl">🏛️</span>
+          <img src={rbuLogo} className=" rounded-full"></img>
         </div>
         <div className="text-center">
           <h1 className="text-xl md:text-2xl font-bold text-foreground">
@@ -19,7 +20,7 @@ export function LEDPreview({ rows, brightness }) {
       </div>
 
       {/* LED Panel */}
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-xl mx-auto">
         <div
           className="led-panel rounded-lg border border-[hsl(var(--led-grid))] overflow-hidden"
           style={{ opacity }}

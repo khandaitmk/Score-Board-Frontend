@@ -36,12 +36,12 @@ export function SportSelector({ value, onChange }) {
           </SelectValue>
         </SelectTrigger>
 
-        <SelectContent className="bg-popover border-border">
+        <SelectContent className="bg-gray-900 text-white border-border w-full">
           {SPORTS_CONFIG.map((sport) => (
             <SelectItem
               key={sport.id}
               value={sport.id}
-              className="focus:bg-accent focus:text-accent-foreground"
+              className="focus:bg-accent focus:text-accent-foreground border-b-2"
             >
               <span className="flex items-center gap-2">
                 <span>{sport.icon}</span>
