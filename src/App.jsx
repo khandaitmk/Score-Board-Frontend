@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import Index from "./pages/index";
-import Login from "./pages/login";
 import { getUser } from "./lib/auth";
 import { useState } from "react";
+import Login from "./pages/login";
 function App() {
     const [user, setUser] = useState(() => getUser());      
   return (

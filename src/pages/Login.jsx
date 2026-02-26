@@ -36,7 +36,7 @@ function Login(props) {
         
         {/* Header */}
         <div className='flex flex-col items-center gap-2'>
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center border-2 border-blue-500">
+          <div className="w-16 h-16 rounded-full bg-linear-to-br from-orange-500 to-red-600 flex items-center justify-center border-2 border-blue-500">
             <img src={logo} className="rounded-full w-full h-full object-cover" />
           </div>
           <h1 className='text-2xl font-bold text-center'>Ramdeobaba University</h1>
