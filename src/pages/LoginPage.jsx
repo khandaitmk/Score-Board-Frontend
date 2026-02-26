@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { login } from '@/lib/auth';
 import { getUser } from '../lib/auth';
 
-function Login(props) {
+function LoginPage(props) {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -99,4 +99,4 @@ function Login(props) {
   )
 }
 
-export default Login
+export default LoginPage;

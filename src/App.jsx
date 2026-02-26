@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import Index from "./pages/index";
 import { getUser } from "./lib/auth";
 import { useState } from "react";
-import Login from "./pages/login";
+import LoginPage from "./pages/LoginPage";
 function App() {
     const [user, setUser] = useState(() => getUser());      
   return (
@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={user ? <Navigate to="/Index" replace /> : <Login onLogin={setUser}/>}
+          element={user ? <Navigate to="/Index" replace /> : <LoginPage onLogin={setUser}/>}
         />
   
         <Route
