@@ -15,7 +15,7 @@ import { RightSidebar } from "@/components/RightSidebar";
 
 import { useScoreboard } from "@/components/useScoreboard";
 
-export default function Index() {
+export default function Index(props) {
   const [activeTab, setActiveTab] = useState("scoreboard");
   const scoreboard = useScoreboard();
 
@@ -182,6 +182,7 @@ export default function Index() {
       <LEDPreview
         rows={scoreboard.state.rows}
         brightness={scoreboard.state.brightness}
+        onLogout = {props.onLogout}
       />
 
       {/* Main Content */}

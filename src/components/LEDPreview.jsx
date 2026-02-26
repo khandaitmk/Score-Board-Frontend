@@ -1,11 +1,16 @@
+
+import { IoIosLogOut } from "react-icons/io";
+import { Button } from "@/components/ui/button";
 import rbuLogo from "../assets/rbu-logo.png";
-export function LEDPreview({ rows, brightness }) {
+import { logout } from "../lib/auth";
+export function LEDPreview({ rows, brightness ,onLogout}) {
   const opacity = brightness / 100;
 
   return (
     <div className="w-full bg-linear-to-b from-[hsl(220,30%,8%)] to-[hsl(220,25%,12%)] py-8 px-4">
       {/* University Header */}
-      <div className="flex items-center justify-center gap-4 mb-6">
+      <div>
+        <div className="flex items-center justify-center gap-4 mb-6">
         <div className="w-16 h-16 rounded-full bg-linear-to-br from-orange-500 to-red-600 flex items-center justify-center border-2 border-blue-500">
           <img src={rbuLogo} className=" rounded-full"></img>
         </div>
@@ -17,8 +22,22 @@ export function LEDPreview({ rows, brightness }) {
             Sports Department- ScoreBoard Display
           </p>
         </div>
+        
       </div>
-
+      <div className=" flex items-center justify-center mb-10">
+          <Button
+              onClick={()=>{
+                logout();
+                onLogout();
+              }
+              }
+              className="flex items-center justify-center cursor-pointer bg-red-500 hover:scale-105 transition-all duration-200 text-white gap-2 rounded-lg"
+            >
+                <IoIosLogOut></IoIosLogOut>
+              <p>Logout</p>
+            </Button>
+        </div>
+      </div>
       {/* LED Panel */}
       <div className="max-w-xl mx-auto">
         <div

@@ -42,8 +42,29 @@ const initialState = {
 };
 
 export function useScoreboard() {
-  const [state, setState] = useState(initialState);
+const [state, setState] = useState(() => {
+  try {
+    const saved = localStorage.getItem("scoreboard-state");
+      
+    return saved ? JSON.parse(saved) : initialState;
+  } catch {
+    return initialState;
+  }
+  
+});
 
+useEffect(() => {
+  localStorage.setItem("scoreboard-state", JSON.stringify(state));
+console.log("Active sport state:", {
+    sport:       state.sport,
+    displayName: state.displayName,
+    prefix:      state.prefix,
+    timer:       state.timer,
+    brightness:  state.brightness,
+    // [activeSportKey]: state[activeSportKey],  // only active sport
+    rows:        state.rows,
+  });
+}, [state]);
   // ================= TIMER =================
 
   useEffect(() => {
