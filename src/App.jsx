@@ -16,7 +16,7 @@ function App() {
   
         <Route
           path="/Index"
-          element={user ? <Index onLogout={setUser}/> : <Navigate to="/" replace />}
+          element={user ? <Index onLogout={()=>setUser(null)}/> : <Navigate to="/" replace />}
         />
 
         <Route path="*" element={<Navigate to="/" replace />} />
