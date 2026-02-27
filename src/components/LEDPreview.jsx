@@ -42,15 +42,15 @@ export function LEDPreview({ rows, brightness ,onLogout}) {
       <div className="max-w-xl mx-auto">
         <div
           className="led-panel rounded-lg border border-[hsl(var(--led-grid))] overflow-hidden"
-          style={{ opacity }}
+          
         >
-          <div className="grid grid-rows-6 min-h-[250px] md:min-h-[300px]">
+          <div  className="grid grid-rows-6 min-h-[250px] md:min-h-[300px]">
             {rows.map((row) => (
               <div
                 key={row.id}
                 className="flex items-center justify-center border-b border-[hsl(var(--led-grid))] last:border-b-0 px-4 py-2"
               >
-                <span
+                <span style={{ opacity }}
                   className="led-text text-[hsl(var(--led-red))] text-lg md:text-2xl font-bold tracking-wider text-center"
                 >
                   {row.content || "\u00A0"}
