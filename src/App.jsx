@@ -3,6 +3,7 @@ import Index from "./pages/index";
 import { getUser } from "./lib/auth";
 import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
+import StartUpPage from "./pages/StartUpPage"
 function App() {
     const [user, setUser] = useState(() => getUser());      
   return (
@@ -11,14 +12,17 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={user ? <Navigate to="/Index" replace /> : <LoginPage onLogin={setUser}/>}
+          element={user ? <Navigate to="/StartUpPage" replace /> : <LoginPage onLogin={setUser}/>}
         />
   
         <Route
           path="/Index"
           element={user ? <Index onLogout={()=>setUser(null)}/> : <Navigate to="/" replace />}
         />
-
+        <Route
+          path="/StartUpPage"
+          element={user ? <StartUpPage onLogout={()=>setUser(null)}></StartUpPage> : <Navigate to="/" replace />}
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

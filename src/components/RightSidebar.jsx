@@ -135,13 +135,13 @@ export function RightSidebar({
       </Card>
 
       {/* Live Sync Active Banner */}
-      <div className="flex items-center justify-between bg-green-500 hover:bg-green-600 transition-colors rounded-xl px-4 py-3 cursor-pointer">
+      {/* <div className="flex items-center justify-between bg-green-500 hover:bg-green-600 transition-colors rounded-xl px-4 py-3 cursor-pointer">
         <div className="flex items-center gap-2">
           <Activity className="h-4 w-4 text-white" />
           <span className="text-white font-medium text-sm">Live Sync Active</span>
         </div>
         <div className="h-2.5 w-2.5 rounded-full bg-white animate-pulse" />
-      </div>
+      </div> */}
     </div>
   );
 }

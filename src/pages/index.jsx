@@ -188,13 +188,13 @@ export default function Index(props) {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-2 gap-4 mb-6">
+          <TabsList className="grid grid-cols-1 gap-4 mb-6">
             <TabsTrigger value="scoreboard">
               Sports Scoreboards
             </TabsTrigger>
-            <TabsTrigger value="manual">
+            {/* <TabsTrigger value="manual">
               Manual Editor
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

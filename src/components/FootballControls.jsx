@@ -85,9 +85,9 @@ export function FootballControls({
 
       <Button
         onClick={onSwapTeams}
-        className="w-full gap-2"
+        className="w-full gap-2 bg-blue-500 text-white"
       >
-        <ArrowLeftRight className="h-4 w-4" />
+        <ArrowLeftRight className=" h-4 w-4" />
         Swap Teams
       </Button>
     </div>

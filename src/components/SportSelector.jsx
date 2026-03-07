@@ -36,7 +36,7 @@ export function SportSelector({ value, onChange }) {
           </SelectValue>
         </SelectTrigger>
 
-        <SelectContent className="bg-gray-900 text-white border-border w-full">
+        <SelectContent className="bg-white text-black border-border w-full">
           {SPORTS_CONFIG.map((sport) => (
             <SelectItem
               key={sport.id}

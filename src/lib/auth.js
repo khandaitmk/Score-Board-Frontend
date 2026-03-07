@@ -1,6 +1,6 @@
 export const USERS = [
-  { username: "admin",    password: "admin123",    role: "admin"    },
-  { username: "operator", password: "operator123", role: "operator" },
+  { username: "Admin",    password: "admin123",    role: "admin"    },
+  { username: "Operator", password: "operator123", role: "operator" },
 ];
 
 export function login(username, password) {

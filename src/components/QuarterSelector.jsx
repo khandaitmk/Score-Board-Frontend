@@ -16,7 +16,7 @@ export function QuarterSelector({ value, onChange }) {
             variant={value === quarter ? "default" : "secondary"}
             className={
               value === quarter
-                ? "bg-primary border-2 hover:bg-primary/90"
+                ? "bg-blue-500 border-2 hover:bg-primary/90"
                 : "bg-secondary border-2 hover:bg-secondary/80"
             }
             onClick={() => onChange(quarter)}

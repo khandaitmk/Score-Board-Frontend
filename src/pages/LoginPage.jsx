@@ -24,7 +24,7 @@ function LoginPage(props) {
     const user = login(formData.username, formData.password);
     if (user) {
         props.onLogin(user);
-      navigate("/Index");
+      navigate("/StartUpPage");
     } else {
       setError("Invalid username or password");
     }
