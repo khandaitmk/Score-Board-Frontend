@@ -8,8 +8,8 @@ function StartUpPage(props) {
     { id: 1, content: "HELLO WELCOME TO RBU" },
     { id: 2, content: "SCORE-BOARD" },
     { id: 3, content: "" },
-    { id: 4, content: "" },
-    { id: 5, content: "" },
+    { id: 4, content: "'Champions Are Made Where" },
+    { id: 5, content: "The Comfort Zone Ends'" },
     { id: 6, content: "" },
   ];
     const navigate = useNavigate();
