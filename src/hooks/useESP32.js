@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const ESP32_IP = import.meta.env.VITE_ESP32_IP;
+const ESP32_IP = window.location.hostname;
 
 export function useESP32() {
   const ws = useRef(null);
