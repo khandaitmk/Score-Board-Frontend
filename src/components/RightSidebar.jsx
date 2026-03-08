@@ -16,6 +16,7 @@ export function RightSidebar({
   onBrightnessChange,
   onReset,
   onClear,
+  onReconnect
 }) {
   return (
     <div className="space-y-4 bg-[#0f1b2d] min-h-screen p-4 rounded-xl">
@@ -32,7 +33,7 @@ export function RightSidebar({
               <Wifi className="h-5 w-5 text-white" />
               <span className="font-medium text-white">Hardware Connected</span>
             </div>
-            <Button variant="ghost" size="icon" className="text-white h-8 w-8 hover:bg-[#2a3a4a]">
+            <Button onClick={onReconnect} variant="ghost" size="icon" className="text-white h-8 w-8 hover:bg-[#2a3a4a]">
               <RefreshCw className="h-4 w-4" />
             </Button>
           </div>

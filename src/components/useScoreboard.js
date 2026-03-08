@@ -55,6 +55,15 @@ const [state, setState] = useState(() => {
 
 useEffect(() => {
   localStorage.setItem("scoreboard-state", JSON.stringify(state));
+  // sendToESP32({
+  //   sport:       state.sport,
+  //   displayName: state.displayName,
+  //   prefix:      state.prefix,
+  //   timer:       state.timer,
+  //   brightness:  state.brightness,
+  //   // [activeSportKey]: state[activeSportKey],  // only active sport
+  //   rows:        state.rows,
+  // });
 console.log("Active sport state:", {
     sport:       state.sport,
     displayName: state.displayName,

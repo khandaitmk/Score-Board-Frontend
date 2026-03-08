@@ -1,4 +1,4 @@
-export const USERS = [
+export const USERS =[
   { username: "Admin",    password: "admin123",    role: "admin"    },
   { username: "Operator", password: "operator123", role: "operator" },
 ];

@@ -14,10 +14,12 @@ import { ManualRowEditor } from "@/components/ManualRowEditor";
 import { RightSidebar } from "@/components/RightSidebar";
 
 import { useScoreboard } from "@/components/useScoreboard";
+import { useESP32 } from "../hooks/useESP32";
 
 export default function Index(props) {
   const [activeTab, setActiveTab] = useState("scoreboard");
   const scoreboard = useScoreboard();
+  const { connected, error, sendToESP32 , reconnect } = useESP32();
 
   const renderSportControls = () => {
   switch (scoreboard.state.sport) {
@@ -227,10 +229,11 @@ export default function Index(props) {
             {/* Right Sidebar */}
             <RightSidebar
               brightness={scoreboard.state.brightness}
-              isHardwareConnected={scoreboard.state.isHardwareConnected}
+              isHardwareConnected={connected}
               onBrightnessChange={scoreboard.setBrightness}
               onReset={scoreboard.resetAll}
               onClear={scoreboard.clearDisplay}
+              onReconnect = {reconnect}
             />
           </div>
         </Tabs>
