@@ -3,6 +3,16 @@ import { Input } from "@/components/ui/input";
 import { Minus, Plus } from "lucide-react";
 
 export function ScoreControl({ label, value, onChange }) {
+  const numVal = typeof value === "number" && !isNaN(value) ? value : 0;
+
+  const handleDecrease = () => {
+    if (onChange) onChange(numVal - 1);
+  };
+
+  const handleIncrease = () => {
+    if (onChange) onChange(numVal + 1);
+  };
+
   return (
     <div className="space-y-2">
       <label className="text-sm font-medium text-foreground">{label}</label>
@@ -11,23 +21,26 @@ export function ScoreControl({ label, value, onChange }) {
         <Button
           variant="destructive"
           size="icon"
-          className="h-10 w-10 rounded-md bg-red-500"
-          onClick={() => onChange(value - 1)}
+          className="h-10 w-10 rounded-md bg-red-500 hover:bg-red-600"
+          onClick={handleDecrease}
         >
-          <Minus className="h-4 w-4 " />
+          <Minus className="h-4 w-4" />
         </Button>
 
         <Input
           type="number"
-          value={value}
-          onChange={(e) => onChange(parseInt(e.target.value, 10) || 0)}
+          value={numVal}
+          onChange={(e) => {
+            const parsed = parseInt(e.target.value, 10);
+            if (onChange) onChange(isNaN(parsed) ? 0 : parsed);
+          }}
           className="text-center bg-secondary border-border [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
 
         <Button
           size="icon"
           className="h-10 w-10 rounded-md bg-[hsl(var(--success))] hover:bg-[hsl(var(--success))]/90"
-          onClick={() => onChange(value + 1)}
+          onClick={handleIncrease}
         >
           <Plus className="h-4 w-4" />
         </Button>

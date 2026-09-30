@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, FastForward } from "lucide-react";
 import { ScoreControl } from "./ScoreControl";
 import { TimerControl } from "./TimerControl";
 import { QuarterSelector } from "./QuarterSelector";
@@ -17,6 +17,7 @@ export function FootballControls({
   onScore1Change,
   onScore2Change,
   onQuarterChange,
+  onNextQuarter,
   onSwapTeams,
   onTimerMinutesChange,
   onTimerSecondsChange,
@@ -24,6 +25,8 @@ export function FootballControls({
   onTimerPause,
   onTimerReset,
 }) {
+  const currentQ = football.quarter ?? 1;
+
   return (
     <div className="space-y-6">
       <div className="flex gap-2">
@@ -78,18 +81,32 @@ export function FootballControls({
         onReset={onTimerReset}
       />
 
-      <QuarterSelector
-        value={football.quarter}
-        onChange={onQuarterChange}
-      />
+      <div className="space-y-2">
+        <QuarterSelector
+          value={football.quarter}
+          onChange={onQuarterChange}
+        />
 
-      <Button
-        onClick={onSwapTeams}
-        className="w-full gap-2 bg-blue-500 text-white"
-      >
-        <ArrowLeftRight className=" h-4 w-4" />
-        Swap Teams
-      </Button>
+        {onNextQuarter && currentQ < 4 && (
+          <Button
+            onClick={onNextQuarter}
+            className="w-full gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4"
+          >
+            <FastForward className="h-4 w-4" />
+            Advance to Q{currentQ + 1} {currentQ === 2 ? "(Swaps Halftime Sides)" : ""}
+          </Button>
+        )}
+      </div>
+
+      {onSwapTeams && (
+        <Button
+          onClick={onSwapTeams}
+          className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+        >
+          <ArrowLeftRight className="h-4 w-4" />
+          Swap Teams / Sides
+        </Button>
+      )}
     </div>
   );
 }

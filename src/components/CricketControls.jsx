@@ -9,9 +9,10 @@ export function CricketControls({
   onOversChange, onBallsChange,
   onTargetChange, onInningsChange,onTotalOversChange,
 }) {
-const totalOvers = cricket.totalOvers ?? 20;
+  const totalOvers = cricket.totalOvers ?? 20;
   const totalBallsPlayed = cricket.overs * 6 + cricket.balls;
   const totalBallsInMatch = totalOvers * 6;
+  const isMatchOver = totalBallsPlayed >= totalBallsInMatch || cricket.wickets >= 10;
 
   const runsRequired = cricket.innings === 2 && cricket.target > 0
     ? cricket.target - cricket.runs
@@ -26,30 +27,59 @@ const totalOvers = cricket.totalOvers ?? 20;
 
   // Add ball + auto increment overs
   const addBallAndRuns = (r) => {
+    if (isMatchOver) return;
+
     addRuns(r);
+
     const newBalls = cricket.balls + 1;
+
     if (newBalls >= 6) {
-      onOversChange(cricket.overs + 1);
-      onBallsChange(0);
+      const nextOvers = cricket.overs + 1;
+      if (nextOvers >= totalOvers) {
+        onOversChange(totalOvers);
+        onBallsChange(0);
+      } else {
+        onOversChange(nextOvers);
+        onBallsChange(0);
+      }
     } else {
-      onBallsChange(newBalls);
+      if (cricket.overs >= totalOvers) {
+        onOversChange(totalOvers);
+        onBallsChange(0);
+      } else {
+        onBallsChange(newBalls);
+      }
     }
   };
 
   // Dot ball
   const addDotBall = () => {
+    if (isMatchOver) return;
+
     const newBalls = cricket.balls + 1;
+
     if (newBalls >= 6) {
-      onOversChange(cricket.overs + 1);
-      onBallsChange(0);
+      const nextOvers = cricket.overs + 1;
+      if (nextOvers >= totalOvers) {
+        onOversChange(totalOvers);
+        onBallsChange(0);
+      } else {
+        onOversChange(nextOvers);
+        onBallsChange(0);
+      }
     } else {
-      onBallsChange(newBalls);
+      if (cricket.overs >= totalOvers) {
+        onOversChange(totalOvers);
+        onBallsChange(0);
+      } else {
+        onBallsChange(newBalls);
+      }
     }
   };
 
   // Wicket
   const addWicket = () => {
-    if (cricket.wickets < 10) {
+    if (cricket.wickets < 10 && !isMatchOver) {
       onWicketsChange(cricket.wickets + 1);
       addDotBall();
     }
@@ -95,28 +125,28 @@ const totalOvers = cricket.totalOvers ?? 20;
           Match Overs
         </label>
         <div className="grid grid-cols-5 gap-2">
-                    {[5, 10, 15, 20, 50].map((o) => (
+          {[5, 10, 15, 20, 50].map((o) => (
             <button
-                key={o}
-                onClick={() => onTotalOversChange(o)}
-                className={`rounded-lg py-2 text-sm font-bold transition-all active:scale-95 border
+              key={o}
+              onClick={() => onTotalOversChange(o)}
+              className={`rounded-lg py-2 text-sm font-bold transition-all active:scale-95 border
                 ${totalOvers === o
-                    ? "bg-[#3a62d9] text-white border-[#3a62d9]"
-                    : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
+                  ? "bg-[#3a62d9] text-white border-[#3a62d9]"
+                  : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
                 }`}
             >
-                {o}
+              {o}
             </button>
-            ))}
+          ))}
         </div>
         {/* Manual overs input */}
         <Input
-            type="number"
-            value={totalOvers}
-            onChange={(e) => onTotalOversChange(Number(e.target.value))}
-            placeholder="Custom overs e.g. 25"
-            className="mt-2"
-            />
+          type="number"
+          value={totalOvers}
+          onChange={(e) => onTotalOversChange(Number(e.target.value))}
+          placeholder="Custom overs e.g. 25"
+          className="mt-2"
+        />
       </div>
 
       {/* Team Names */}
@@ -162,6 +192,12 @@ const totalOvers = cricket.totalOvers ?? 20;
           </span>
         </div>
 
+        {totalBallsPlayed >= totalBallsInMatch && (
+          <div className="text-xs font-semibold text-red-600 bg-red-100 p-2 rounded text-center border border-red-200">
+            ⚠️ Maximum overs limit reached ({totalOvers} overs)
+          </div>
+        )}
+
         {/* Manual score adjust boxes */}
         <div className="grid grid-cols-3 gap-3">
           <div className="space-y-1">
@@ -189,7 +225,8 @@ const totalOvers = cricket.totalOvers ?? 20;
               <span className="flex-1 text-center font-bold text-lg">{cricket.wickets}</span>
               <button
                 onClick={() => onWicketsChange(Math.min(10, cricket.wickets + 1))}
-                className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300 font-bold text-sm"
+                disabled={cricket.wickets >= 10}
+                className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300 font-bold text-sm disabled:opacity-40"
               >+</button>
             </div>
           </div>
@@ -201,14 +238,18 @@ const totalOvers = cricket.totalOvers ?? 20;
                 onClick={() => {
                   if (cricket.overs > 0) onOversChange(cricket.overs - 1);
                 }}
-                className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300 font-bold text-sm"
+                disabled={cricket.overs <= 0}
+                className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300 font-bold text-sm disabled:opacity-40"
               >−</button>
               <span className="flex-1 text-center font-bold text-lg">
                 {cricket.overs}.{cricket.balls}
               </span>
               <button
-                onClick={() => onOversChange(cricket.overs + 1)}
-                className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300 font-bold text-sm"
+                onClick={() => {
+                  if (cricket.overs < totalOvers) onOversChange(cricket.overs + 1);
+                }}
+                disabled={cricket.overs >= totalOvers}
+                className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300 font-bold text-sm disabled:opacity-40"
               >+</button>
             </div>
           </div>
@@ -224,7 +265,8 @@ const totalOvers = cricket.totalOvers ?? 20;
               <button
                 key={r}
                 onClick={() => addBallAndRuns(r)}
-                className={`rounded-lg py-3 text-sm font-bold transition-all active:scale-95
+                disabled={isMatchOver}
+                className={`rounded-lg py-3 text-sm font-bold transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed
                   ${r === 6 ? "bg-green-500 hover:bg-green-600 text-white" :
                     r === 4 ? "bg-blue-500 hover:bg-blue-600 text-white" :
                     "bg-gray-200 hover:bg-gray-300 text-black"}`}
@@ -245,14 +287,15 @@ const totalOvers = cricket.totalOvers ?? 20;
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={addDotBall}
-            className="rounded-lg py-3 text-sm font-semibold bg-gray-800 hover:bg-gray-900 text-white transition-all active:scale-95"
+            disabled={isMatchOver}
+            className="rounded-lg py-3 text-sm font-semibold bg-gray-800 hover:bg-gray-900 text-white transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             • Dot Ball
           </button>
           <button
             onClick={addWicket}
-            disabled={cricket.wickets >= 10}
-            className="rounded-lg py-3 text-sm font-semibold bg-red-500 hover:bg-red-600 text-white transition-all active:scale-95 disabled:opacity-40"
+            disabled={isMatchOver}
+            className="rounded-lg py-3 text-sm font-semibold bg-red-500 hover:bg-red-600 text-white transition-all active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
           >
             🔴 Wicket ({cricket.wickets}/10)
           </button>

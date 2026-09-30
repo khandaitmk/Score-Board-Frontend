@@ -1,4 +1,6 @@
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ArrowLeftRight, UserMinus, RefreshCw } from "lucide-react";
 import { ScoreControl } from "./ScoreControl";
 import { TimerControl } from "./TimerControl";
 
@@ -7,10 +9,17 @@ export function KhoKhoControls({
   onPrefixChange, onDisplayNameChange,
   onTeam1NameChange, onTeam2NameChange,
   onScore1Change, onScore2Change,
-  onTurnChange, onInningsChange,
+  onDefendersLeftChange, onDefenderOut, onNextInnings,
+  onHalfChange, onInningsChange, onSwapTeams,
   onTimerMinutesChange, onTimerSecondsChange,
   onTimerStart, onTimerPause, onTimerReset,
 }) {
+  const currentInnings = khoKho.half ?? khoKho.innings ?? 1;
+  const handleInningsSelect = (val) => {
+    if (onHalfChange) onHalfChange(val);
+    if (onInningsChange) onInningsChange(val);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex gap-2">
@@ -28,10 +37,57 @@ export function KhoKhoControls({
         <ScoreControl label="Score 2" value={khoKho.score2} onChange={onScore2Change} />
       </div>
 
+      {/* Dynamic Defender Out Action Button */}
+      {onDefenderOut && (
+        <div className="space-y-2 rounded-xl border border-red-500/20 bg-red-500/5 p-3">
+          <label className="text-xs font-semibold text-red-500 uppercase tracking-wide flex items-center gap-1.5">
+            <UserMinus className="h-4 w-4" />
+            Live Kho-Kho Action
+          </label>
+          <Button
+            onClick={onDefenderOut}
+            className="w-full gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-5 shadow-sm"
+          >
+            🏃 Defender Out (-1 Defender & +1 Point) → Auto Batch Reset at 0
+          </Button>
+        </div>
+      )}
+
       <div className="grid grid-cols-2 gap-4">
-        <ScoreControl label="Innings (1/2)" value={khoKho.innings} onChange={onInningsChange} max={2} />
-        <ScoreControl label="Turn (1/2)" value={khoKho.turn} onChange={onTurnChange} max={2} />
+        <ScoreControl
+          label="Defenders Left (0-9)"
+          value={khoKho.defendersLeft ?? 9}
+          onChange={(v) => onDefendersLeftChange && onDefendersLeftChange(Math.min(9, Math.max(0, v)))}
+        />
+        <div className="space-y-1">
+          <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Innings / Half (1 / 2)</label>
+          <div className="grid grid-cols-2 gap-2 mt-1">
+            {[1, 2].map((h) => (
+              <button
+                key={h}
+                onClick={() => handleInningsSelect(h)}
+                className={`rounded-lg py-2 text-sm font-bold border transition-all ${
+                  currentInnings === h
+                    ? "bg-blue-600 text-white border-blue-600 shadow-sm"
+                    : "bg-secondary text-foreground border-border hover:bg-secondary/80"
+                }`}
+              >
+                Innings {h}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
+
+      {onNextInnings && currentInnings === 1 && (
+        <Button
+          onClick={onNextInnings}
+          className="w-full gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-4"
+        >
+          <RefreshCw className="h-4 w-4" />
+          End Inning 1 → Swap Roles & Start Inning 2
+        </Button>
+      )}
 
       <TimerControl
         {...timer}
@@ -41,6 +97,16 @@ export function KhoKhoControls({
         onPause={onTimerPause}
         onReset={onTimerReset}
       />
+
+      {onSwapTeams && (
+        <Button
+          onClick={onSwapTeams}
+          className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+        >
+          <ArrowLeftRight className="h-4 w-4" />
+          Swap Teams / Roles
+        </Button>
+      )}
     </div>
   );
 }

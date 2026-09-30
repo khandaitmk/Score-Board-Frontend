@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, FastForward } from "lucide-react";
 import { ScoreControl } from "./ScoreControl";
 import { TimerControl } from "./TimerControl";
 import { QuarterSelector } from "./QuarterSelector";
@@ -19,14 +19,16 @@ export function BasketballControls({
   onFouls1Change,
   onFouls2Change,
   onQuarterChange,
+  onAdvanceQuarter,
   onSwapTeams,
   onTimerMinutesChange,
   onTimerSecondsChange,
   onTimerStart,
   onTimerPause,
   onTimerReset,
-
 }) {
+  const currentQ = basketball.quarter ?? 1;
+
   return (
     <div className="space-y-6">
       {/* Prefix + Display Name */}
@@ -69,7 +71,7 @@ export function BasketballControls({
         />
       </div>
 
-      {/* 🟡 Fouls (NEW) */}
+      {/* Fouls */}
       <div className="grid grid-cols-2 gap-4">
         <ScoreControl
           label="Fouls 1"
@@ -83,6 +85,21 @@ export function BasketballControls({
         />
       </div>
 
+      {/* Quarter */}
+      <div className="space-y-2">
+        <QuarterSelector value={basketball.quarter} onChange={onQuarterChange} />
+
+        {onAdvanceQuarter && currentQ < 4 && (
+          <Button
+            onClick={onAdvanceQuarter}
+            className="w-full gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4"
+          >
+            <FastForward className="h-4 w-4" />
+            Advance to Q{currentQ + 1} (Resets Team Fouls {currentQ === 2 ? "& Swaps Halftime Sides" : ""})
+          </Button>
+        )}
+      </div>
+
       {/* Timer */}
       <TimerControl
         {...timer}
@@ -93,17 +110,16 @@ export function BasketballControls({
         onReset={onTimerReset}
       />
 
-      {/* Quarter */}
-      <QuarterSelector value={basketball.quarter} onChange={onQuarterChange} />
-
       {/* Swap Teams */}
-      <Button
-        onClick={onSwapTeams}
-        className="w-full gap-2 bg-blue-500 text-white"
-      >
-        <ArrowLeftRight className="h-4 w-4" />
-        Swap Teams
-      </Button>
+      {onSwapTeams && (
+        <Button
+          onClick={onSwapTeams}
+          className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+        >
+          <ArrowLeftRight className="h-4 w-4" />
+          Swap Teams / Sides
+        </Button>
+      )}
     </div>
   );
 }
