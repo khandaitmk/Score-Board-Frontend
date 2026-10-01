@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -7,12 +8,50 @@ export function CricketControls({
   onTeam1NameChange, onTeam2NameChange,
   onRunsChange, onWicketsChange,
   onOversChange, onBallsChange,
-  onTargetChange, onInningsChange,onTotalOversChange,
+  onTargetChange, onInningsChange, onTotalOversChange,
+  onTriggerCelebration,
 }) {
   const totalOvers = cricket.totalOvers ?? 20;
   const totalBallsPlayed = cricket.overs * 6 + cricket.balls;
   const totalBallsInMatch = totalOvers * 6;
   const isMatchOver = totalBallsPlayed >= totalBallsInMatch || cricket.wickets >= 10;
+
+  useEffect(() => {
+    if (cricket.innings === 2 && cricket.target > 0 && onTriggerCelebration) {
+      if (cricket.runs >= cricket.target) {
+        const wicketsLeft = 10 - cricket.wickets;
+        const winnerName = cricket.team1Name || "CHASING TEAM";
+        onTriggerCelebration(
+          winnerName,
+          `WON BY ${wicketsLeft} WICKETS! (${cricket.runs}/${cricket.wickets})`
+        );
+      } else if (cricket.wickets >= 10 || totalBallsPlayed >= totalBallsInMatch) {
+        if (cricket.runs < cricket.target - 1) {
+          const runsDiff = (cricket.target - 1) - cricket.runs;
+          const winnerName = cricket.team2Name || "DEFENDING TEAM";
+          onTriggerCelebration(
+            winnerName,
+            `WON BY ${runsDiff} RUNS! (${cricket.runs}/${cricket.wickets})`
+          );
+        } else if (cricket.runs === cricket.target - 1) {
+          onTriggerCelebration(
+            "MATCH TIED",
+            `SCORES LEVEL! (${cricket.runs}/${cricket.wickets})`
+          );
+        }
+      }
+    }
+  }, [
+    cricket.innings,
+    cricket.target,
+    cricket.runs,
+    cricket.wickets,
+    totalBallsPlayed,
+    totalBallsInMatch,
+    cricket.team1Name,
+    cricket.team2Name,
+    onTriggerCelebration,
+  ]);
 
   const runsRequired = cricket.innings === 2 && cricket.target > 0
     ? cricket.target - cricket.runs
@@ -329,7 +368,7 @@ export function CricketControls({
       {cricket.innings === 1 && (
         <button
           onClick={goToSecondInnings}
-          className="w-full rounded-xl py-3 text-sm font-semibold bg-[#3a62d9] hover:bg-[#2a52c9] text-white transition-all"
+          className="w-full rounded-xl py-3 px-3 text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-all cursor-pointer"
         >
           End 1st Innings → Start 2nd Innings
         </button>

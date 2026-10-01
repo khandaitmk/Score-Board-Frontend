@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 // ⚙️ TOGGLE WEBSOCKET ON/OFF FOR LOCAL TESTING:
 // Set to `false` to disable WebSocket connection (for offline UI dev testing)
 // Set to `true` to connect to hardware ESP32 WebSocket
-const ENABLE_WEBSOCKET = false;
+const ENABLE_WEBSOCKET = true;
 
 const ESP32_IP = import.meta.env.VITE_ESP32_IP || window.location.hostname;
 

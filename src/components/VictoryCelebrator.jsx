@@ -126,16 +126,14 @@ export function VictoryCelebrator({
         <div className="flex flex-col gap-2">
           <Button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-600 hover:to-yellow-600 text-white font-bold py-3 rounded-xl shadow-md flex items-center justify-center gap-2 cursor-pointer transition-all hover:scale-[1.01]"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-md flex items-center justify-center cursor-pointer transition-all active:scale-98"
           >
-            <Trophy className="w-5 h-5 text-yellow-200" />
-            🏆 Declare Winner & Celebrate
-            <Sparkles className="w-4 h-4 text-yellow-200" />
+            Declare Winner
           </Button>
 
           {isOpen && (
-            <div className="rounded-xl border border-amber-200 bg-amber-50/95 dark:bg-gray-900/90 dark:border-amber-900/50 p-4 space-y-4 shadow-xl">
-              <p className="text-xs font-semibold text-amber-800 dark:text-amber-300 uppercase tracking-wide">
+            <div className="rounded-xl border border-slate-700 bg-slate-900 p-4 space-y-4 shadow-xl text-white">
+              <p className="text-xs font-bold text-blue-400 uppercase tracking-wide">
                 Quick Select Winner:
               </p>
               <div className="grid grid-cols-2 gap-3">
@@ -143,38 +141,38 @@ export function VictoryCelebrator({
                   <button
                     key={idx}
                     onClick={() => handleCelebrate(sug.name, sug.details)}
-                    className="flex flex-col items-center justify-center p-3 rounded-lg border border-amber-300 bg-white dark:bg-gray-800 dark:border-amber-700 hover:bg-amber-100 dark:hover:bg-gray-700 transition-all active:scale-95 text-center cursor-pointer"
+                    className="flex flex-col items-center justify-center p-3 rounded-lg border border-slate-700 bg-slate-800 hover:bg-blue-600 hover:border-blue-500 transition-all active:scale-95 text-center cursor-pointer"
                   >
-                    <span className="font-bold text-sm text-gray-900 dark:text-gray-100 uppercase">
+                    <span className="font-bold text-sm text-white uppercase">
                       {sug.name}
                     </span>
-                    <span className="text-xs text-amber-600 dark:text-amber-400">
+                    <span className="text-xs text-blue-300">
                       {sug.details}
                     </span>
                   </button>
                 ))}
               </div>
 
-              <div className="border-t border-amber-200 dark:border-amber-900/50 pt-3 space-y-2">
-                <p className="text-xs text-gray-500 font-medium">Or enter custom winner text:</p>
+              <div className="border-t border-slate-700 pt-3 space-y-2">
+                <p className="text-xs text-slate-300 font-medium">Or enter custom winner text:</p>
                 <div className="flex gap-2">
                   <Input
                     placeholder="Winning Team / Player Name"
                     value={customWinner}
                     onChange={(e) => setCustomWinner(e.target.value)}
-                    className="bg-white dark:bg-gray-800"
+                    className="bg-slate-800 text-white border-slate-700 placeholder:text-slate-400"
                   />
                   <Input
                     placeholder="Details e.g. Score 3-1"
                     value={customDetails}
                     onChange={(e) => setCustomDetails(e.target.value)}
-                    className="bg-white dark:bg-gray-800"
+                    className="bg-slate-800 text-white border-slate-700 placeholder:text-slate-400"
                   />
                 </div>
                 <Button
                   onClick={() => handleCelebrate(customWinner || "CHAMPIONS", customDetails)}
                   disabled={!customWinner.trim()}
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold gap-2 cursor-pointer mt-2"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold gap-2 cursor-pointer mt-2"
                 >
                   <CheckCircle2 className="w-4 h-4" />
                   Show Custom Winner on Board

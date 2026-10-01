@@ -54,7 +54,7 @@ export function CustomControls({ custom = {}, onRowChange, onClearAll }) {
                 "⭐ RBU SPORTS ⭐",
               ])
             }
-            className="w-full gap-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
           >
             <PartyPopper className="h-4 w-4" />
             Welcome Banner
@@ -72,7 +72,7 @@ export function CustomControls({ custom = {}, onRowChange, onClearAll }) {
                 "⭐⭐⭐⭐⭐⭐⭐",
               ])
             }
-            className="w-full gap-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
           >
             <Trophy className="h-4 w-4" />
             Winner Trophy
@@ -90,7 +90,7 @@ export function CustomControls({ custom = {}, onRowChange, onClearAll }) {
                 "STAY TUNED! 🎵",
               ])
             }
-            className="w-full gap-2 bg-amber-600 hover:bg-amber-500 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
           >
             <Coffee className="h-4 w-4" />
             Break Notice
@@ -108,7 +108,7 @@ export function CustomControls({ custom = {}, onRowChange, onClearAll }) {
                 "📢 ATTENTION ALL 📢",
               ])
             }
-            className="w-full gap-2 bg-purple-600 hover:bg-purple-500 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
           >
             <Megaphone className="h-4 w-4" />
             Match Notice
@@ -126,7 +126,7 @@ export function CustomControls({ custom = {}, onRowChange, onClearAll }) {
                 "🔥 GO RBU TIGERS 🔥",
               ])
             }
-            className="w-full gap-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
           >
             <Sparkles className="h-4 w-4" />
             Custom Game
@@ -137,7 +137,7 @@ export function CustomControls({ custom = {}, onRowChange, onClearAll }) {
             onClick={() =>
               applyPreset(["", "", "", "", "", ""])
             }
-            className="w-full gap-2 bg-slate-700 hover:bg-slate-600 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
+            className="w-full gap-2 bg-slate-700 hover:bg-slate-800 text-white rounded-xl shadow-md font-bold py-3.5 px-4 cursor-pointer transition-all active:scale-95 text-xs sm:text-sm"
           >
             <RotateCcw className="h-4 w-4" />
             Reset All Rows

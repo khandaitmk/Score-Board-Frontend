@@ -44,7 +44,7 @@ export function TimerControl({
 
         <Button
           onClick={isRunning ? onPause : onStart}
-          className="bg-[hsl(var(--success))] hover:bg-[hsl(var(--success))]/90 gap-2"
+          className="bg-blue-600 hover:bg-blue-700 text-white gap-2 cursor-pointer font-medium"
         >
           {isRunning ? (
             <>
@@ -61,7 +61,7 @@ export function TimerControl({
           variant="secondary"
           size="icon"
           onClick={onReset}
-          className="bg-muted hover:bg-muted/80"
+          className="bg-slate-700 hover:bg-slate-800 text-white cursor-pointer"
         >
           <RotateCcw className="h-4 w-4" />
         </Button>

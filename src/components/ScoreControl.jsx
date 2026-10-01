@@ -21,7 +21,7 @@ export function ScoreControl({ label, value, onChange }) {
         <Button
           variant="destructive"
           size="icon"
-          className="h-10 w-10 rounded-md bg-red-500 hover:bg-red-600"
+          className="h-10 w-10 rounded-md bg-red-600 hover:bg-red-700 text-white cursor-pointer"
           onClick={handleDecrease}
         >
           <Minus className="h-4 w-4" />
@@ -39,7 +39,7 @@ export function ScoreControl({ label, value, onChange }) {
 
         <Button
           size="icon"
-          className="h-10 w-10 rounded-md bg-[hsl(var(--success))] hover:bg-[hsl(var(--success))]/90"
+          className="h-10 w-10 rounded-md bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
           onClick={handleIncrease}
         >
           <Plus className="h-4 w-4" />

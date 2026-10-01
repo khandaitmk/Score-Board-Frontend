@@ -90,10 +90,15 @@ export function FootballControls({
         {onNextQuarter && currentQ < 4 && (
           <Button
             onClick={onNextQuarter}
-            className="w-full gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-3 text-xs sm:text-sm cursor-pointer flex-wrap sm:flex-nowrap justify-center"
           >
-            <FastForward className="h-4 w-4" />
-            Advance to Q{currentQ + 1} {currentQ === 2 ? "(Swaps Halftime Sides)" : ""}
+            <FastForward className="h-4 w-4 shrink-0" />
+            <span>Advance to Q{currentQ + 1}</span>
+            {currentQ === 2 && (
+              <span className="opacity-85 font-normal text-[11px] sm:text-xs">
+                (Swap Halftime Sides)
+              </span>
+            )}
           </Button>
         )}
       </div>
@@ -101,7 +106,7 @@ export function FootballControls({
       {onSwapTeams && (
         <Button
           onClick={onSwapTeams}
-          className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+          className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium"
         >
           <ArrowLeftRight className="h-4 w-4" />
           Swap Teams / Sides

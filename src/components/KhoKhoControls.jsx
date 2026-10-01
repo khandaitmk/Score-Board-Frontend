@@ -46,9 +46,10 @@ export function KhoKhoControls({
           </label>
           <Button
             onClick={onDefenderOut}
-            className="w-full gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-5 shadow-sm"
+            className="w-full gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-3 text-xs sm:text-sm cursor-pointer shadow-sm flex-wrap justify-center"
           >
-            🏃 Defender Out (-1 Defender & +1 Point) → Auto Batch Reset at 0
+            <UserMinus className="h-4 w-4 shrink-0" />
+            <span>Defender Out (-1 Def / +1 Pt)</span>
           </Button>
         </div>
       )}
@@ -66,7 +67,7 @@ export function KhoKhoControls({
               <button
                 key={h}
                 onClick={() => handleInningsSelect(h)}
-                className={`rounded-lg py-2 text-sm font-bold border transition-all ${
+                className={`rounded-lg py-2 text-xs sm:text-sm font-bold border transition-all ${
                   currentInnings === h
                     ? "bg-blue-600 text-white border-blue-600 shadow-sm"
                     : "bg-secondary text-foreground border-border hover:bg-secondary/80"
@@ -82,10 +83,10 @@ export function KhoKhoControls({
       {onNextInnings && currentInnings === 1 && (
         <Button
           onClick={onNextInnings}
-          className="w-full gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-4"
+          className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-3 text-xs sm:text-sm cursor-pointer justify-center"
         >
-          <RefreshCw className="h-4 w-4" />
-          End Inning 1 → Swap Roles & Start Inning 2
+          <RefreshCw className="h-4 w-4 shrink-0" />
+          <span>End Inning 1 → Start Inning 2</span>
         </Button>
       )}
 
@@ -101,7 +102,7 @@ export function KhoKhoControls({
       {onSwapTeams && (
         <Button
           onClick={onSwapTeams}
-          className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+          className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium"
         >
           <ArrowLeftRight className="h-4 w-4" />
           Swap Teams / Roles

@@ -69,10 +69,13 @@ export function VolleyballControls({
         {onCompleteSet && (
           <Button
             onClick={onCompleteSet}
-            className="w-full gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md py-5"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md py-3 px-3 text-xs sm:text-sm cursor-pointer flex-wrap sm:flex-nowrap justify-center"
           >
-            <CheckCircle2 className="h-5 w-5" />
-            Finish Set {activeSetNum} ({volleyball.currentScore1 ?? 0} - {volleyball.currentScore2 ?? 0}) → Save & Start Set {Math.min(5, activeSetNum + 1)}
+            <CheckCircle2 className="h-4 w-4 shrink-0" />
+            <span>Finish Set {activeSetNum} ({volleyball.currentScore1 ?? 0}-{volleyball.currentScore2 ?? 0})</span>
+            <span className="opacity-85 font-normal text-[11px] sm:text-xs">
+              → Start Set {Math.min(5, activeSetNum + 1)}
+            </span>
           </Button>
         )}
       </div>
@@ -112,7 +115,7 @@ export function VolleyballControls({
       {onSwapTeams && (
         <Button
           onClick={onSwapTeams}
-          className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+          className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium"
         >
           <ArrowLeftRight className="h-4 w-4" />
           Swap Teams / Sides

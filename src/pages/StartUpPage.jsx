@@ -28,7 +28,7 @@ function StartUpPage(props) {
       brightness: 100,
       sport: "startup",
     });
-  }, [connected]);
+  }, []);
 
   return (
     <div>
@@ -40,7 +40,7 @@ function StartUpPage(props) {
       <div className="flex justify-center mt-6">
         <Button
           onClick={handleStart}
-          className="flex items-center justify-center cursor-pointer bg-red-500 hover:scale-105 transition-all duration-200 text-white gap-2 rounded-lg px-6 py-3 font-semibold"
+          className="flex items-center justify-center cursor-pointer bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all duration-200 text-white gap-2 rounded-lg px-6 py-3 font-semibold shadow-md"
         >
           Start Game
         </Button>

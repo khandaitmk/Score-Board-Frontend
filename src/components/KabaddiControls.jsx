@@ -93,10 +93,10 @@ export function KabaddiControls({
         {onEndHalf && (kabaddi.half ?? 1) === 1 && (
           <Button
             onClick={onEndHalf}
-            className="w-full gap-2 bg-indigo-600 hover:bg-indigo-700 text-white mt-2 py-4"
+            className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white mt-2 py-3 px-3 text-xs sm:text-sm cursor-pointer justify-center"
           >
-            <RefreshCw className="h-4 w-4" />
-            End 1st Half → Swap Sides & Start Half 2
+            <RefreshCw className="h-4 w-4 shrink-0" />
+            <span>End 1st Half → Start Half 2</span>
           </Button>
         )}
       </div>
@@ -113,7 +113,7 @@ export function KabaddiControls({
       {onSwapTeams && (
         <Button
           onClick={onSwapTeams}
-          className="w-full gap-2 bg-blue-500 hover:bg-blue-600 text-white"
+          className="w-full gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium"
         >
           <ArrowLeftRight className="h-4 w-4" />
           Swap Teams / Sides

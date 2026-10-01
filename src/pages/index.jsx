@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
   import { VolleyballControls } from "@/components/VolleyballControls";
@@ -20,6 +21,7 @@ import { useScoreboard } from "@/components/useScoreboard";
 import { useESP32 } from "../hooks/useESP32";
 
 export default function Index(props) {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("scoreboard");
   const scoreboard = useScoreboard();
   const { connected, error, sendToESP32 , reconnect } = useESP32();
@@ -34,7 +36,6 @@ export default function Index(props) {
     scoreboard.state.rows,
     scoreboard.state.brightness,
     scoreboard.state.sport,
-    connected,
   ]);
 
   const renderSportControls = () => {
@@ -139,6 +140,7 @@ export default function Index(props) {
           onTargetChange={scoreboard.setCricketTarget}
           onInningsChange={scoreboard.setCricketInnings}
           onTotalOversChange={scoreboard.setCricketTotalOvers}
+          onTriggerCelebration={scoreboard.triggerCelebration}
         />
       );
 
@@ -241,6 +243,7 @@ export default function Index(props) {
         rows={scoreboard.state.rows}
         brightness={scoreboard.state.brightness}
         onLogout = {props.onLogout}
+        onGoToStartUp={() => navigate("/StartUpPage")}
       />
 
       {/* Main Content */}
@@ -295,6 +298,7 @@ export default function Index(props) {
               onReset={scoreboard.resetAll}
               onClear={scoreboard.clearDisplay}
               onReconnect = {reconnect}
+              onGoToStartUp={() => navigate("/StartUpPage")}
             />
           </div>
         </Tabs>

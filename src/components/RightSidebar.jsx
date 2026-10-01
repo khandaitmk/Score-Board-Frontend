@@ -16,7 +16,8 @@ export function RightSidebar({
   onBrightnessChange,
   onReset,
   onClear,
-  onReconnect
+  onReconnect,
+  onGoToStartUp,
 }) {
   return (
     <div className="space-y-4 bg-[#0f1b2d] min-h-screen p-4 rounded-xl">
@@ -76,29 +77,28 @@ export function RightSidebar({
           <div className="grid grid-cols-2 gap-3">
             <Button
               onClick={onReset}
-              className="bg-blue-500 hover:bg-blue-600 text-white gap-2 rounded-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white gap-2 rounded-lg font-medium"
             >
               <RotateCcw className="h-4 w-4" />
               Reset
             </Button>
             <Button
               onClick={onClear}
-              className="bg-[#6b7280] hover:bg-[#4b5563] text-white gap-2 rounded-lg"
+              className="bg-slate-700 hover:bg-slate-800 text-white gap-2 rounded-lg font-medium"
             >
               <Trash2 className="h-4 w-4" />
               Clear
             </Button>
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Hardware Settings */}
-      <Card className="bg-[#1e2a38] border-[#2a3a4a]">
-        <CardContent className="p-4">
-          <div className="flex items-center gap-3">
-            <Settings className="h-5 w-5 text-gray-400" />
-            <span className="font-medium text-white">Hardware Settings</span>
-          </div>
+          {onGoToStartUp && (
+            <Button
+              onClick={onGoToStartUp}
+              className="w-full mt-3 bg-red-600 hover:bg-red-700 text-white gap-2 rounded-lg font-semibold cursor-pointer"
+            >
+              <RotateCcw className="h-4 w-4 rotate-90" />
+              End / Startup Page
+            </Button>
+          )}
         </CardContent>
       </Card>
 

@@ -36,16 +36,16 @@ export function SportSelector({ value, onChange }) {
           </SelectValue>
         </SelectTrigger>
 
-        <SelectContent className="bg-white text-black border-border w-full">
+        <SelectContent className="bg-gradient-to-b from-[#1e293b] to-[#0f172a] text-slate-100 border border-slate-700 shadow-2xl rounded-xl w-full p-1.5 mt-1">
           {SPORTS_CONFIG.map((sport) => (
             <SelectItem
               key={sport.id}
               value={sport.id}
-              className="focus:bg-accent focus:text-accent-foreground border-b-2"
+              className="hover:bg-blue-600 hover:text-white text-slate-100 cursor-pointer rounded-lg px-3 py-2.5 my-0.5 transition-colors font-medium flex items-center gap-2 border-b border-slate-700/40 last:border-b-0"
             >
-              <span className="flex items-center gap-2">
-                <span>{sport.icon}</span>
-                <span>{sport.name}</span>
+              <span className="flex items-center gap-2 text-sm">
+                <span className="text-base">{sport.icon}</span>
+                <span className="font-semibold">{sport.name}</span>
               </span>
             </SelectItem>
           ))}
